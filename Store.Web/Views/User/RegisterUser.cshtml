@@ -1,0 +1,64 @@
+﻿
+@model Store.Web.ViewModels.RegisterUserViewModel
+@{
+    ViewBag.Title = "Register-User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("RegisterUser", "User", FormMethod.Post))
+
+{
+
+    <div class="mb-3">
+
+
+        <label class="form-label">Username</label>
+        <br />
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+        @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "attribute-error" })
+        <br />
+    </div>
+    <div class="mb-3">
+        <label for="txtPassword">Password</label>
+        <br />
+        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password, null, new { @class = "attribute-error" })
+        <br />
+    </div>
+    <div class="mb-3">
+        <label for="txtConfirmPassword">ConfirmPassword</label>
+        <br />
+        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", type = "password", placeholder = "ConfirmPassword" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "attribute-error" })
+        <br />
+    </div>
+    <div class="mb-3">
+        <label for="EmployeeEmail">Employee Email</label>
+        <br />
+        @Html.TextBoxFor(m => m.EmployeeEmail, new { @class = "form-control", type = "text", placeholder = "Employee Email" })
+        @Html.ValidationMessageFor(m => m.EmployeeEmail, null, new { @class = "attribute-error" })
+        <br />
+    </div>
+    <div class="mb-3">
+
+
+        <label class="form-label">User Role Title</label>
+        <br />
+        @Html.TextBoxFor(m => m.UserRoleTitle, new { @class = "form-control", placeholder = "User Role Title" })
+        @Html.ValidationMessageFor(m => m.UserRoleTitle, null, new { @class = "attribute-error" })
+        <br />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <style>
+        .error-summary {
+            color: red;
+        }
+
+        .attribute-error {
+            color: red;
+        }
+    </style>
+
+}

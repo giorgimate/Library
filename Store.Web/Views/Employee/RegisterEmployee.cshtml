@@ -1,0 +1,80 @@
+﻿
+@model Store.Web.ViewModels.RegisterEmployeeViewModel
+@{
+    ViewBag.Title = "Register Employee";
+}
+
+<h2>Register Employee</h2>
+
+@using (Html.BeginForm("RegisterEmployee", "Employee", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>FirstName</label>
+        <br />
+        @Html.TextBoxFor(m => m.FirstName)
+
+    </div>
+    <div class="form-group">
+        <label>LastName</label>
+        <br />
+        @Html.TextBoxFor(m => m.LastName)
+
+    </div>
+    <div class="form-group">
+        <label>Adress</label>
+        <br />
+        @Html.TextBoxFor(m => m.Address)
+
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br />
+        @Html.TextBoxFor(m => m.Email)
+
+    </div>
+    <div class="form-group">
+        <label>PhoneNumber</label>
+        <br />
+        @Html.TextBoxFor(m => m.PhoneNumber)
+
+    </div>
+    //multiple select
+<div>
+    <h4>Select Employee Positions </h4>
+
+  
+    @for(int i =0; i<Model.Positions.Count; i++)
+        {
+            <td>
+                @Html.CheckBoxFor(model => model.IsChecked, new { value = Model.Positions[i].PositionTitle })
+                <label>@Model.Positions[i].PositionTitle</label>
+                @Html.HiddenFor(model => model.Positions[i].ID)
+                @Html.HiddenFor(model => model.Positions[i].PositionTitle)
+            </td>
+        }
+
+ 
+</div>
+
+
+
+    <div class="form-group">
+        <label>HireDate</label>
+        <br />
+        @Html.TextBoxFor(m => m.HireDate)
+
+    </div>
+    <div class="form-group">
+        <label>Sallary</label>
+        <br />
+        @Html.TextBoxFor(m => m.Sallary)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+<script>
+
+</script>

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Store.Model",
+    "\\Store.Model\\Models",
+    "\\Store.Model\\Properties",
+    "\\Store.Service",
+    "\\Store.Service\\Properties",
+    "\\Store.Web",
+    "\\Store.Web\\Controllers",
+    "\\Store.Web\\css",
+    "\\Store.Web\\Properties"
+  ],
+  "SelectedNode": "\\Store.sln",
+  "PreviewInSolutionExplorer": false
+}

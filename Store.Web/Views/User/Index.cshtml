@@ -1,0 +1,45 @@
+﻿
+@model List<Store.Model.Models.Users>
+@{
+    ViewBag.Title = "Users List";
+}
+
+
+@using (Html.BeginForm("Search", "User", FormMethod.Get))
+{
+    @Html.TextBox("searching")
+    <input type="submit" value="Search" />
+
+}
+
+<h3><a href="http://localhost:3523/User/RegisterUser">Register new User</a></h3>
+<h1>Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>User Role Title</th>
+            <th>Is Active</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.UserName</td>
+                <td>@user.PassWord.GetHashCode()</td>
+                <td>@user.UserRoleTitle</td>
+                <td>@user.IsActive</td>
+                <td><a href="http://localhost:3523/User/View/@user.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

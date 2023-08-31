@@ -1,0 +1,118 @@
+﻿@model Store.Web.ViewModels.RegisterEmployeeViewModel
+
+<h1>Edit employee</h1>
+@using (Html.BeginForm("Submit", "Employee", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>FirstName</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.FirstName, new { value = Model.FirstName })
+
+    </div>
+    <div class="form-group">
+        <label>LastName</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.LastName, new { value = Model.LastName })
+
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Address, new { value = Model.Address })
+
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Email, new { value = Model.Email })
+
+    </div>
+    <div class="form-group">
+        <label>PhoneNumber</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.PhoneNumber, new { value = Model.PhoneNumber })
+
+    </div>
+    <div class="form-group">
+        <label>HireDate</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.HireDate, new { value = Model.HireDate })
+
+    </div>
+    <div class="form-group">
+        <label>Sallary</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Sallary, new { value = Model.Sallary })
+        
+    </div>
+
+    <div class="form-group">
+
+
+        <label for="toggleCheckbox">Show This Employee User:</label>
+        <input type="checkbox" id="toggleCheckbox">
+    </div>
+
+    <div id="myDiv" class="hidden">
+        @if (Model.User != null)
+        {
+            <h4>This Employee User Username: "@Model.User.UserName"</h4>
+            <h4>This Employee User Password: "@Model.User.PassWord"</h4>
+            <h4>This Employee User Role Title: "@Model.User.UserRoleTitle"</h4>
+            <h4>This Employee User Role Status: "@Model.User.IsActive"</h4>
+        }
+        else
+        {
+            <p style="color:red">ამ თანამშროლის მეილზე მომხმარებელი არ არის დარეგისტრირებული</p>
+        }
+
+        @*<p>@Model.RegisterUser.PassWord</p>
+        <p>@Model.RegisterUser.UserRoleTitle</p>*@
+
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "Employee", new { id = Model.ID })">
+        Delete
+    </button>
+
+
+
+
+
+    <script>
+        const toggleCheckbox = document.getElementById('toggleCheckbox');
+        const myDiv = document.getElementById('myDiv');
+
+        toggleCheckbox.addEventListener('change', function () {
+            if (toggleCheckbox.checked) {
+                myDiv.classList.remove('hidden');
+            } else {
+                myDiv.classList.add('hidden');
+            }
+        });
+    </script>
+
+}
+
+
+

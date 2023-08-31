@@ -1,0 +1,39 @@
+﻿
+@model List<Store.Model.Models.Genres>
+@{
+    ViewBag.Title = "Genres List";
+}
+
+
+    
+    @using (Html.BeginForm("Search", "Genre", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Search" />
+
+    }
+
+
+<h3><a href="http://localhost:3523/Genre/RegisterGenre">Register new Genre</a></h3>
+<h1>Genres</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var genre in Model)
+        {
+            <tr>
+                <td>@genre.ID</td>
+                <td>@genre.Name</td>
+                <td><a href="http://localhost:3523/Genre/View/@genre.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

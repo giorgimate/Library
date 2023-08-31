@@ -1,0 +1,51 @@
+﻿
+@model List<Store.Model.Models.Employees>
+@{
+    ViewBag.Title = "Employees List";
+}
+
+
+    
+    @using (Html.BeginForm("Search", "Employee", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Search" />
+
+    }
+
+
+<h3><a href="http://localhost:3523/Employee/RegisterEmployee">Register new Employee</a></h3>
+<h1>Employees</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+            <th>Day of Hire</th>
+            <th>Sallary</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.ID</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Address</td>
+                <td>@employee.Email</td>
+                <td>@employee.PhoneNumber</td>
+                <td>@employee.HireDate</td>
+                <td>@employee.Sallary</td>
+                <td><a href="http://localhost:3523/Employee/View/@employee.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

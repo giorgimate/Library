@@ -1,0 +1,105 @@
+﻿@using Store.Model.Models
+@using Store.Data;
+
+@{
+    bool IsLoggedIn = (Session["IsLoggedIn"] != null && (bool)Session["IsLoggedIn"]);
+    int UserID = Session["UserID"] != null ? (int)Session["UserID"] : 0;
+    var roleids = StoreSeedData.GetUserRoles().Where(x => x.UserID == UserID).Select(x => x.RoleID).ToList();
+    var roleMenus = StoreSeedData.GetRoleMenus().Where(x => roleids.Contains(x.RoleID)).ToList();
+    var menus = StoreSeedData.GetMenus().Where(x => roleMenus.Any(rm => rm.MenuID == x.ID)).ToList();
+    var AllMenus = StoreSeedData.GetMenus().Where(x => menus.Any(rm => rm.ParrentMenuItemID == x.ID)).ToList();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap -->
+    @Styles.Render("~/bootstrap/css")
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+    html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/
+    respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">@Html.ActionLink("Store", "Index", "Home", new { }, new { @class = "navbar-brand" })</a>
+            </div>
+            <ul class="nav navbar-nav">
+                @if (IsLoggedIn)
+                {
+                    foreach (var menu in menus)
+                    {
+                        var a = StoreSeedData.GetMenus().Where(x => x.ParrentMenuItemID == menu.ID);
+                        if (a.Any())
+                        {
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href=@menu.url>
+
+                                    @menu.MenuName
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @foreach (var item in a)
+                                    {
+                                        
+                                       <li>  <a href="@item.url">@item.MenuName</a></li>
+                                      
+
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="@menu.url">@menu.MenuName</a></li>
+                        }
+
+
+                    }
+                    <li>
+                        <a href="#">
+                            <form method="post" action="@Url.Action("Logout", "Account")" class="form-inline">
+                                <button type="submit" class="btn btn-link" style="padding:0;">LogOut</button>
+                            </form>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Login", "Login", "Account", null, null)</li>
+
+
+                }
+                @*<li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Page 1
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Page 2</a></li>*@
+
+            </ul>
+        </div>
+    </nav>
+
+
+    @RenderBody()
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    @Scripts.Render("~/bootstrap/js")
+</body>
+</html>

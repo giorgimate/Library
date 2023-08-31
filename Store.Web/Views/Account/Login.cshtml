@@ -1,0 +1,50 @@
+﻿@model Store.Web.ViewModels.UserFormViewModel
+
+@{
+    ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    
+    <div style="margin-top:70px;">
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <label for="UserName">UserName</label>
+            <input type="text"  class="form-control" name="UserName" placeholder="Enter Username">
+            @Html.ValidationMessageFor(model => Model.UserName)
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password"  class="form-control" name="Password" placeholder="Password">
+            @Html.ValidationMessageFor(model => Model.Password)
+
+        </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+
+
+
+@*@model UserFormViewModel
+
+    <h2>Login</h2>
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
+        </div>
+
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+    }*@

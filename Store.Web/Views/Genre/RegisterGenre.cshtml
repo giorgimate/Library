@@ -1,0 +1,21 @@
+﻿
+@model Store.Web.ViewModels.RegisterGenreViewModel
+@{
+    ViewBag.Title = "Register Genre";
+}
+<h2>Register Genre</h2>
+
+@using (Html.BeginForm("RegisterGenre", "Genre", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Name</label>
+        <br />
+        @Html.TextBoxFor(m => m.Name)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

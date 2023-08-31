@@ -1,0 +1,92 @@
+﻿@model Store.Web.ViewModels.RegisterUserViewModel
+
+<h1>Edit User</h1>
+@using (Html.BeginForm("Submit", "User", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>Username</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.UserName,  new { value = Model.UserName })
+
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Password, new {value = Model.Password })
+
+    </div>
+    <div class="form-group">
+        <label>User Role Title</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.UserRoleTitle, new { value = Model.UserRoleTitle })
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Employee ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.ID, new { value = Model.Employees.ID })
+
+    </div>
+    <div class="form-group">
+        <label>FirstName</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.FirstName, new { value = Model.Employees.FirstName })
+
+    </div>
+    <div class="form-group">
+        <label>LastName</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.LastName, new { value = Model.Employees.LastName })
+
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.Email, new { value = Model.Employees.Email })
+
+    </div>
+    <div class="form-group">
+        <label>PhoneNumber</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.PhoneNumber, new { value = Model.Employees.PhoneNumber })
+
+    </div>
+    <div class="form-group">
+        <label>HireDate</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.HireDate, new { value = Model.Employees.HireDate })
+
+    </div>
+    <div class="form-group">
+        <label>Sallary</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Employees.Sallary, new { value = Model.Employees.Sallary })
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "User", new { id = Model.ID })">
+        Delete
+    </button>
+}
