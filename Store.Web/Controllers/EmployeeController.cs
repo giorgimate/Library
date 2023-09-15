@@ -160,7 +160,6 @@ namespace Store.Web.Controllers
         public ActionResult Search(string searching)
         {
             List<Employees> employeeList = new List<Employees>();
-            //List<Employees> empty = new List<Employees>();
             var employees = EmployeesService.GetEmployees().ToList();
             foreach (var item in employees)
             {
@@ -168,10 +167,6 @@ namespace Store.Web.Controllers
                 {
                     employeeList.Add(item);
                 }
-                //else
-                //{
-                //    return View(empty);
-                //}
             }
 
           
