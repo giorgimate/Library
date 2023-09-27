@@ -85,22 +85,58 @@ namespace Store.Data
                     ParrentMenuItemID=2,
                      url="http://localhost:3523/Author/Index",
                 },
+                   new Menu
+                {
+                    ID=8,
+                    MenuName="Publishers",
+                    ParrentMenuItemID=2,
+                     url="http://localhost:3523/Publisher/Index",
+                },
+                      new Menu
+                {
+                    ID=15,
+                    MenuName="Positions",
+                    ParrentMenuItemID=2,
+                     url="http://localhost:3523/Position/Index",
+                },
+                           new Menu
+                {
+                    ID=16,
+                    MenuName="Roles",
+                    ParrentMenuItemID=2,
+                     url="http://localhost:3523/Role/Index",
+                },
+                                     new Menu
+                {
+                    ID=17,
+                    MenuName="Shalves",
+                    ParrentMenuItemID=2,
+                     url="http://localhost:3523/Shalve/Index",
+                },
+
+                  new Menu
+                {
+                    ID=9,
+                    MenuName="Languages",
+                    ParrentMenuItemID=2,
+                     url="http://localhost:3523/Language/Index",
+                },
                  new Menu
                 {
-                    ID=7,
+                    ID=12,
                     MenuName="Genres",
                     ParrentMenuItemID=2,
                      url="http://localhost:3523/Genre/Index",
                 },
                 new Menu
                 {
-                    ID=8,
+                    ID=13,
                     MenuName="menu3_1",
                     ParrentMenuItemID=3,
                 },
                 new Menu
                 {
-                    ID=9,
+                    ID=14,
                     MenuName="menu4_1",
                     ParrentMenuItemID=4,
                 }

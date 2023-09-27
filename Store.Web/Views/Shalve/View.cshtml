@@ -1,0 +1,58 @@
+﻿@model Store.Web.ViewModels.RegisterShalveViewModel
+
+<h1>Edit Role</h1>
+@using (Html.BeginForm("Submit", "Shalve", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>Floor</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Floor, new { value = Model.Floor })
+
+    </div>
+    <div class="form-group">
+        <label>Room</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Room, new { value = Model.Room })
+
+    </div>
+    <div class="form-group">
+        <label>Shelf</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Shelf, new { value = Model.Shelf })
+
+    </div>
+    <div class="form-group">
+        <label>Section</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Section, new { value = Model.Section })
+
+    </div>
+    <div class="form-group">
+        <label>Row</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Row, new { value = Model.Row })
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "Shalve", new { id = Model.ID })">
+        Delete
+    </button>
+}
+
+
+

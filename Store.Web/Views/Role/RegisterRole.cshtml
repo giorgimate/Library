@@ -1,0 +1,21 @@
+﻿
+@model Store.Web.ViewModels.RegisterRoleViewModel
+@{
+    ViewBag.Title = "Register Role";
+}
+<h2>Register Publisher</h2>
+
+@using (Html.BeginForm("RegisterRole", "Role", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Role Name </label>
+        <br />
+        @Html.TextBoxFor(m => m.RoleName)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

@@ -1,0 +1,39 @@
+﻿
+@model List<Store.Model.Models.Languages>
+@{
+    ViewBag.Title = "Languages List";
+}
+
+
+    
+    @using (Html.BeginForm("Search", "Language", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Search" />
+
+    }
+
+
+<h3><a href="http://localhost:3523/Language/RegisterLanguage">Register new Language</a></h3>
+<h1>Languages</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Language</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var language in Model)
+        {
+            <tr>
+                <td>@language.ID</td>
+                <td>@language.Language</td>
+                <td><a href="http://localhost:3523/Language/View/@language.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

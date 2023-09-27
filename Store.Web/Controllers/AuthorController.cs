@@ -124,7 +124,7 @@ namespace Store.Web.Controllers
             var authors = AuthorsService.GetAuthors().ToList();
             foreach (var item in authors)
             {
-                if (item.FirstName.StartsWith(searching) || item.LastName.StartsWith(searching))
+                if (/*item.FirstName.StartsWith(searching) || item.LastName.StartsWith(searching)*/(item?.FirstName ?? null) != null && item.FirstName.StartsWith(searching) || (item?.LastName ?? null) != null && item.LastName.StartsWith(searching))
                 {
                     authorsList.Add(item);
                 }

@@ -16,6 +16,7 @@ namespace Store.Web.ViewModels
         public int PositionID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool RegisterUserWithoutEmployee {get; set;}
         public string Address { get; set; }
         public bool IsChecked { get; set; }
         public string Email { get; set; }
@@ -23,6 +24,7 @@ namespace Store.Web.ViewModels
         public DateTime? HireDate { get; set; }
         public int Sallary { get; set; }
         public Users User { get; set; }
+        public RegisterUserViewModel RegisterUserViewModell { get; set; }
         public List<Positions> Positions { get; set; }
         public List<EmployeePositions> EmployeePositions { get; set; }
 

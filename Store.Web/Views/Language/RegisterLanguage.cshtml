@@ -1,0 +1,23 @@
+﻿
+@model Store.Web.ViewModels.RegisterLanguageViewModel
+@{
+    ViewBag.Title = "Register Language";
+}
+<h2>Register Language</h2>
+
+@using (Html.BeginForm("RegisterLanguage", "Language", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Language</label>
+        <br />
+        @Html.TextBoxFor(m => m.Language)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+
+
+

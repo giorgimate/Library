@@ -117,7 +117,7 @@ namespace Store.Web.Controllers
             var genres = GenresService.GetGenres().ToList();
             foreach (var item in genres)
             {
-                if (item.Name.StartsWith(searching))
+                if (/*item.Name.StartsWith(searching)*/(item?.Name ?? null) != null && item.Name.StartsWith(searching) )
                 {
                     genresList.Add(item);
                 }

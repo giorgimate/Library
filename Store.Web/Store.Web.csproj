@@ -152,6 +152,11 @@
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ShalveController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\PublisherController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -171,6 +176,11 @@
     <Compile Include="ViewModels\RegisterGenreViewModel.cs" />
     <Compile Include="ViewModels\RegisterAuthorViewModel.cs" />
     <Compile Include="ViewModels\RegisterEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\RegisterLanguageViewModel.cs" />
+    <Compile Include="ViewModels\RegisterShalveViewModel.cs" />
+    <Compile Include="ViewModels\RegisterRoleViewModel.cs" />
+    <Compile Include="ViewModels\RegisterPositionViewModel.cs" />
+    <Compile Include="ViewModels\RegisterPublisherViewModel.cs" />
     <Compile Include="ViewModels\RegisterUserViewModel.cs" />
     <Compile Include="ViewModels\UserFormViewModel.cs" />
   </ItemGroup>
@@ -201,6 +211,26 @@
     <Content Include="Views\Genre\RegisterGenre.cshtml" />
     <Content Include="Views\Genre\View.cshtml" />
     <Content Include="Views\Genre\Search.cshtml" />
+    <Content Include="Views\Language\Index.cshtml" />
+    <Content Include="Views\Language\RegisterLanguage.cshtml" />
+    <Content Include="Views\Language\Search.cshtml" />
+    <Content Include="Views\Language\View.cshtml" />
+    <Content Include="Views\Publisher\Index.cshtml" />
+    <Content Include="Views\Publisher\RegisterPublisher.cshtml" />
+    <Content Include="Views\Publisher\Search.cshtml" />
+    <Content Include="Views\Publisher\View.cshtml" />
+    <Content Include="Views\Position\Index.cshtml" />
+    <Content Include="Views\Position\RegisterPosition.cshtml" />
+    <Content Include="Views\Position\Search.cshtml" />
+    <Content Include="Views\Position\View.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\RegisterRole.cshtml" />
+    <Content Include="Views\Role\Search.cshtml" />
+    <Content Include="Views\Role\View.cshtml" />
+    <Content Include="Views\Shalve\Index.cshtml" />
+    <Content Include="Views\Shalve\RegisterShalve.cshtml" />
+    <Content Include="Views\Shalve\Search.cshtml" />
+    <Content Include="Views\Shalve\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,39 @@
+﻿
+@model Store.Web.ViewModels.RegisterPublisherViewModel
+@{
+    ViewBag.Title = "Register Publisher";
+}
+<h2>Register Publisher</h2>
+
+@using (Html.BeginForm("RegisterPublisher", "Publisher", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Name</label>
+        <br />
+        @Html.TextBoxFor(m => m.Name)
+
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <br />
+        @Html.TextBoxFor(m => m.Address)
+
+    </div>
+    <div class="form-group">
+        <label>PhoneNumber</label>
+        <br />
+        @Html.TextBoxFor(m => m.PhoneNumber)
+
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br />
+        @Html.TextBoxFor(m => m.Email)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

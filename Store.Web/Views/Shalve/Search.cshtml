@@ -1,0 +1,42 @@
+﻿
+@model List<Store.Model.Models.Shalves>
+@{
+    ViewBag.Title = "Search List";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Floor </th>
+            <th>Room </th>
+            <th>Shelf </th>
+            <th>Section </th>
+            <th>Row </th>
+        </tr>
+    </thead>
+    <tbody>
+
+       
+        @if(Model.Count() == 0)
+            {
+                <h1>no results</h1>
+            }
+        else {
+        foreach (var shalve in Model)
+        {
+            <tr>
+                <td>@shalve.ID</td>
+                <td>@shalve.Floor</td>
+                <td>@shalve.Room</td>
+                <td>@shalve.Shelf</td>
+                <td>@shalve.Section</td>
+                <td>@shalve.Row</td>
+                <td><a href="http://localhost:3523/Shalve/View/@shalve.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+        }
+    </tbody>
+</table>

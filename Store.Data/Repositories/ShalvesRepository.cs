@@ -17,6 +17,7 @@ namespace Store.Data.Repositories
 
     public interface IShalvesRepository : IRepository<Shalves>
     {
+        ////Roles GetShalveByRoleName(string RoleName);
 
     }
 }

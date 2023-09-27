@@ -40,11 +40,11 @@
 
     </div>
     //multiple select
-<div>
-    <h4>Select Employee Positions </h4>
+    @*<div>
+        <h4>Select Employee Positions </h4>
 
-  
-    @for(int i =0; i<Model.Positions.Count; i++)
+
+        @for (int i = 0; i < Model.Positions.Count; i++)
         {
             <td>
                 @Html.CheckBoxFor(model => model.IsChecked, new { value = Model.Positions[i].PositionTitle })
@@ -54,8 +54,8 @@
             </td>
         }
 
- 
-</div>
+
+    </div>*@
 
 
 
@@ -71,10 +71,88 @@
         @Html.TextBoxFor(m => m.Sallary)
 
     </div>
+
+
+    <div class="form-group">
+
+
+        <label  for="toggleCheckbox">Register Without User:</label>
+        @*<input type="checkbox"  id="toggleCheckbox">*@
+        @*@Html.LabelFor(m => m.RegisterUserWithEmployee, new { @for = "toggleCheckbox" })*@
+        @Html.CheckBoxFor(m => m.RegisterUserWithoutEmployee, new { @id = "toggleCheckbox" })
+
+    </div>
+
+    <div id="myDiv" class="">
+        <div class="mb-3">
+
+
+            <label class="form-label">Username</label>
+            <br />
+            @Html.TextBoxFor(m => m.RegisterUserViewModell.UserName, new { @class = "form-control", placeholder = "Username" })
+            @Html.ValidationMessageFor(m => m.RegisterUserViewModell.UserName, null, new { @class = "attribute-error" })
+            <br />
+        </div>
+        <div class="mb-3">
+            <label for="txtPassword">Password</label>
+            <br />
+            @Html.TextBoxFor(m => m.RegisterUserViewModell.Password, new { @class = "form-control", type = "password", placeholder = "Password" })
+            @Html.ValidationMessageFor(m => m.RegisterUserViewModell.Password, null, new { @class = "attribute-error" })
+            <br />
+        </div>
+        <div class="mb-3">
+            <label for="txtConfirmPassword">ConfirmPassword</label>
+            <br />
+            @Html.TextBoxFor(m => m.RegisterUserViewModell.ConfirmPassword, new { @class = "form-control", type = "password", placeholder = "ConfirmPassword" })
+            @Html.ValidationMessageFor(m => m.RegisterUserViewModell.ConfirmPassword, null, new { @class = "attribute-error" })
+            <br />
+        </div>
+        <div class="mb-3">
+            <label for="EmployeeEmail">Employee Email</label>
+            <br />
+            @Html.TextBoxFor(m => m.RegisterUserViewModell.EmployeeEmail, new { @class = "form-control", type = "text", placeholder = "Employee Email" })
+            @Html.ValidationMessageFor(m => m.RegisterUserViewModell.EmployeeEmail, null, new { @class = "attribute-error" })
+            <br />
+        </div>
+        <div class="mb-3">
+
+
+            <label class="form-label">User Role Title</label>
+            <br />
+            @Html.TextBoxFor(m => m.RegisterUserViewModell.UserRoleTitle, new { @class = "form-control", placeholder = "User Role Title" })
+            @Html.ValidationMessageFor(m => m.RegisterUserViewModell.UserRoleTitle, null, new { @class = "attribute-error" })
+            <br />
+        </div>
+
+
+    </div>
+
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 }
 <script>
+    const toggleCheckbox = document.getElementById('toggleCheckbox');
+    const myDiv = document.getElementById('myDiv');
 
+    toggleCheckbox.addEventListener('change', function () {
+        if (toggleCheckbox.checked) {
+            myDiv.classList.add('hidden');
+            toggleCheckbox = true;
+           
+        } else {
+            myDiv.classList.remove('hidden');
+            toggleCheckbox = false;
+        }
+    });
 </script>
+<style>
+    .error-summary {
+        color: red;
+    }
+
+    .attribute-error {
+        color: red;
+    }
+</style>

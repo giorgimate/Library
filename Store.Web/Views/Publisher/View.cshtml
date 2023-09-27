@@ -1,0 +1,51 @@
+﻿@model Store.Web.ViewModels.RegisterPublisherViewModel
+
+<h1>Edit Publisher</h1>
+@using (Html.BeginForm("Submit", "Publisher", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Name, new { value = Model.Name })
+
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Address, new { value = Model.Address })
+
+    </div>
+    <div class="form-group">
+        <label>PhoneNumber</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.PhoneNumber, new { value = Model.PhoneNumber })
+
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Email, new { value = Model.Email })
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "Publisher", new { id = Model.ID })">
+        Delete
+    </button>
+}
+
+
+

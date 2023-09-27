@@ -1,0 +1,30 @@
+﻿@model Store.Web.ViewModels.RegisterLanguageViewModel
+
+<h1>Edit Language</h1>
+@using (Html.BeginForm("Submit", "Language", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>Language</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.Language, new { value = Model.Language })
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "Language", new { id = Model.ID })">
+        Delete
+    </button>
+}
+
+
+

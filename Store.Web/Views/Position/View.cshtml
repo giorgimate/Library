@@ -1,0 +1,30 @@
+﻿@model Store.Web.ViewModels.RegisterPositonViewModel
+
+<h1>Edit Position</h1>
+@using (Html.BeginForm("Submit", "Position", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ID</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.ID, new { value = Model.ID })
+
+    </div>
+    <div class="form-group">
+        <label>Position Title</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.PositionTitle, new { value = Model.PositionTitle })
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <button type="submit" class="btn btn-danger" formaction="@Url.Action("Delete", "Position", new { id = Model.ID })">
+        Delete
+    </button>
+}
+
+
+

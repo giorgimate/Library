@@ -170,7 +170,7 @@ namespace Store.Web.Controllers
             var users = UsersService.GetUsers().ToList();
             foreach (var item in users)
             {
-                if (item.UserName.StartsWith(searching) || item.UserRoleTitle.StartsWith(searching) || item.PassWord.StartsWith(searching))
+                if (/*item.UserName.StartsWith(searching) || item.UserRoleTitle.StartsWith(searching) || item.PassWord.StartsWith(searching)*/(item?.UserName ?? null) != null && item.UserName.StartsWith(searching) || (item?.UserRoleTitle ?? null) != null && item.UserRoleTitle.StartsWith(searching) || (item?.PassWord ?? null) != null && item.PassWord.StartsWith(searching) )
                 {
                     usersList.Add(item);
                 }

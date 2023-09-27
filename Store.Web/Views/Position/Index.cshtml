@@ -1,0 +1,39 @@
+﻿
+@model List<Store.Model.Models.Positions>
+@{
+    ViewBag.Title = "Positions List";
+}
+
+
+    
+    @using (Html.BeginForm("Search", "Position", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Search" />
+
+    }
+
+
+<h3><a href="http://localhost:3523/Position/RegisterPosition">Register new Position</a></h3>
+<h1>Positions</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>PositionTitle</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var position in Model)
+        {
+            <tr>
+                <td>@position.ID</td>
+                <td>@position.PositionTitle</td>
+                <td><a href="http://localhost:3523/Position/View/@position.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

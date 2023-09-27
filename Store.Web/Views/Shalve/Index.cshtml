@@ -1,0 +1,47 @@
+﻿
+@model List<Store.Model.Models.Shalves>
+@{
+    ViewBag.Title = "Roles List";
+}
+
+
+    
+    @using (Html.BeginForm("Search", "Shalve", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="Search" />
+
+    }
+
+
+<h3><a href="http://localhost:3523/Shalve/RegisterShalve">Register new Shalve</a></h3>
+<h1>Shalves</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Floor</th>
+            <th>Room</th>
+            <th>Shelf</th>
+            <th>Section</th>
+            <th>Row</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var shalve in Model)
+        {
+            <tr>
+                <td>@shalve.ID</td>
+                <td>@shalve.Floor</td>
+                <td>@shalve.Room</td>
+                <td>@shalve.Shelf</td>
+                <td>@shalve.Section</td>
+                <td>@shalve.Row</td>
+                <td><a href="http://localhost:3523/Shalve/View/@shalve.ID" class="btn btn-primary">View</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

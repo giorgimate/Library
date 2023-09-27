@@ -11,18 +11,14 @@ using System.Xml.Linq;
 
 namespace Store.Service
 {
-    // operations you want to expose
     public interface IRolesService
     {
         IEnumerable<Roles> GetRoles(string name = null);
-        //IEnumerable<Users> GetUserName(string name );
         Roles GetRole(int id);
         Roles GetRole(string name);
-        //Employees GetEmployeeByEmail(string email);
-        //Users GetUserByUsername(string username);
-        //Users GetUserByPassword(string password);
-        void CreateRole(Roles category);
-        void SaveEmployee();
+        void CreateRole(Roles name);
+        void DeleteRole(Roles name);
+        void SaveRole();
     }
 
     public class RolesService : IRolesService
@@ -45,12 +41,6 @@ namespace Store.Service
             else
                 return RolesRepository.GetAll().Where(c => c.RoleName == name);
         }
-        //public IEnumerable<Users> GetUserName(string name)
-        //{
-        //    var User = UsersRepository.GetUserByUserName(name);
-
-        //    return User;
-        //}
 
         public Roles GetRole(int id)
         {
@@ -63,15 +53,13 @@ namespace Store.Service
             var Role = RolesRepository.GetRoleByRoleName(name);
             return Role;
         }
-
-        //public Employees GetUserByEmail(string email)
-        //{
-        //    var Employee = EmployeesRepository.GetEmployeeByFirstName(email);
-        //    return Employee;
-        //}
         public void CreateRole(Roles Role)
         {
             RolesRepository.Add(Role);
+        }
+        public void DeleteRole(Roles Role)
+        {
+            RolesRepository.Delete(Role);
         }
 
         public void SaveRole()
@@ -79,27 +67,8 @@ namespace Store.Service
             unitOfWork.Commit();
         }
 
-        //errors artyavs
-        public void SaveEmployee()
-        {
-            throw new NotImplementedException();
-        }
 
 
-        //public Employees GetEmployeeByEmail(string email)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Users GetUserByUsername(string username)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Users GetUserByPassword(string password)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 
     #endregion

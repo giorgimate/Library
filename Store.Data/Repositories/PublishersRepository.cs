@@ -14,7 +14,7 @@ namespace Store.Data.Repositories
         public PublishersRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
-        public Publishers GetPublishersByFirstName(string Name)
+        public Publishers GetPublishersByName(string Name)
         {
             var Publisher = this.DbContext.Publishers.Where(c => c.Name == Name).FirstOrDefault();
 
@@ -43,7 +43,7 @@ namespace Store.Data.Repositories
 
     public interface IPublishersRepository : IRepository<Publishers>
     {
-        Publishers GetPublishersByFirstName(string FirstName);
+        Publishers GetPublishersByName(string FirstName);
         Publishers GetPublishersByEmail(string Email);
         Publishers GetMembersByPhoneNumber(string PhoneNumber);
 

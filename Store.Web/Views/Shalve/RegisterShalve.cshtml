@@ -1,0 +1,45 @@
+﻿
+@model Store.Web.ViewModels.RegisterShalveViewModel
+@{
+    ViewBag.Title = "Register Shalve";
+}
+<h2>Register Shalve</h2>
+
+@using (Html.BeginForm("RegisterShalve", "Shalve", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Floor </label>
+        <br />
+        @Html.TextBoxFor(m => m.Floor)
+
+    </div>
+    <div class="form-group">
+        <label>Room </label>
+        <br />
+        @Html.TextBoxFor(m => m.Room)
+
+    </div>
+    <div class="form-group">
+        <label>Shelf </label>
+        <br />
+        @Html.TextBoxFor(m => m.Shelf)
+
+    </div>
+    <div class="form-group">
+        <label>Section </label>
+        <br />
+        @Html.TextBoxFor(m => m.Section)
+
+    </div>
+    <div class="form-group">
+        <label>Row </label>
+        <br />
+        @Html.TextBoxFor(m => m.Row)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

@@ -20,6 +20,7 @@ namespace Store.Service
         Positions GetPositionByPositionTitle(string PositionTitle);
 
         void CreatePosition(Positions Position);
+        void DeletePosition(Positions Position);
         void SavePosition();
     }
 
@@ -59,6 +60,10 @@ namespace Store.Service
         public void CreatePosition(Positions position)
         {
             PositionsRepository.Add(position);
+        }
+        public void DeletePosition(Positions position)
+        {
+            PositionsRepository.Delete(position);
         }
 
         public void SavePosition()

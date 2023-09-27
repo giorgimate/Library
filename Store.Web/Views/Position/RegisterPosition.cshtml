@@ -1,0 +1,21 @@
+﻿
+@model Store.Web.ViewModels.RegisterPositonViewModel
+@{
+    ViewBag.Title = "Register Position";
+}
+<h2>Register Publisher</h2>
+
+@using (Html.BeginForm("Registerposition", "Position", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Position Title</label>
+        <br />
+        @Html.TextBoxFor(m => m.PositionTitle)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+
