@@ -15,6 +15,7 @@
         <br />
 
         @Html.TextBoxFor(model => model.Floor, new { value = Model.Floor })
+        @Html.ValidationMessageFor(m => m.Floor, null, new { @class = "attribute-error" })
 
     </div>
     <div class="form-group">
@@ -22,6 +23,7 @@
         <br />
 
         @Html.TextBoxFor(model => model.Room, new { value = Model.Room })
+        @Html.ValidationMessageFor(m => m.Room, null, new { @class = "attribute-error" })
 
     </div>
     <div class="form-group">
@@ -29,6 +31,7 @@
         <br />
 
         @Html.TextBoxFor(model => model.Shelf, new { value = Model.Shelf })
+        @Html.ValidationMessageFor(m => m.Shelf, null, new { @class = "attribute-error" })
 
     </div>
     <div class="form-group">
@@ -36,6 +39,7 @@
         <br />
 
         @Html.TextBoxFor(model => model.Section, new { value = Model.Section })
+        @Html.ValidationMessageFor(m => m.Section, null, new { @class = "attribute-error" })
 
     </div>
     <div class="form-group">
@@ -43,6 +47,8 @@
         <br />
 
         @Html.TextBoxFor(model => model.Row, new { value = Model.Row })
+        @Html.ValidationMessageFor(m => m.Row, null, new { @class = "attribute-error" })
+        @Html.ValidationMessage("UniqueShalve", new { @class = "attribute-error" })
 
     </div>
 
@@ -56,3 +62,13 @@
 
 
 
+<style>
+    .error-summary {
+        color: red;
+    }
+
+    .attribute-error {
+        display: block;
+        color: red;
+    }
+</style>

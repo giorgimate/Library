@@ -76,10 +76,24 @@ namespace Store.Web.Controllers
             int employeeId = model.ID;
 
 
-            if(tt == true)
+
+            var allempl = EmployeesService.GetEmployees().ToList();
+            foreach (var empl in allempl)
+            {
+                if (model.Email == empl.Email && model.PhoneNumber == empl.PhoneNumber)
+                {
+                    ModelState.AddModelError("UniqueEmployee", "ასეთი დასაქმებული უკვე არსებობს");
+                }
+            }
+
+            if (tt == true)
             {
                 //if (ModelState.IsValid)
                 //{
+                if (ModelState.IsValid)
+                {
+
+
                     var employee = new Employees()
                     {
 
@@ -95,8 +109,10 @@ namespace Store.Web.Controllers
                     };
                     EmployeesService.CreateEmployee(employee);
                     EmployeesService.SaveEmployee();
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
-                
+                    return RedirectToAction("Index");
+                }
+                return View();
+
             }
             else
             {
@@ -146,46 +162,43 @@ namespace Store.Web.Controllers
 
 
 
-            //var allUsers = UsersService.GetUsers();
-            
-            //var user = allUsers.FirstOrDefault(u => u.UserName == model.RegisterUserViewModell.UserName);
-            //var AllEmployeeEmails = EmployeesService.GetEmployees();             
-           
+                //var allUsers = UsersService.GetUsers();
 
-
-            //valid
-            //if (user != null)
-            //{
-            //    ModelState.AddModelError("UserName", "ასეთი იუზერი უკვე არსებოობს ბაზაში");
-
-            //}
+                //var user = allUsers.FirstOrDefault(u => u.UserName == model.RegisterUserViewModell.UserName);
+                //var AllEmployeeEmails = EmployeesService.GetEmployees();             
 
 
 
+                //valid
+                //if (user != null)
+                //{
+                //    ModelState.AddModelError("UserName", "ასეთი იუზერი უკვე არსებოობს ბაზაში");
 
-
-            //empl
-
-            //if (ModelState.IsValid)
-            //{
-            //    var employee = new Employees()
-            //    {
-
-            //        FirstName = model.FirstName,
-            //        LastName = model.LastName,
-            //        Address = model.Address,
-            //        Email = model.Email,
-            //        PhoneNumber = model.PhoneNumber,
-            //        HireDate = model.HireDate,
-            //        Sallary = model.Sallary,
-            //        CreateDate = DateTime.Now,
-
-            //    };
-            //    EmployeesService.CreateEmployee(employee);
-            //    EmployeesService.SaveEmployee();
+                //}
 
 
 
+
+
+                //empl
+
+                //if (ModelState.IsValid)
+                //{
+                //    var employee = new Employees()
+                //    {
+
+                //        FirstName = model.FirstName,
+                //        LastName = model.LastName,
+                //        Address = model.Address,
+                //        Email = model.Email,
+                //        PhoneNumber = model.PhoneNumber,
+                //        HireDate = model.HireDate,
+                //        Sallary = model.Sallary,
+                //        CreateDate = DateTime.Now,
+
+                //    };
+                //    EmployeesService.CreateEmployee(employee);
+                //    EmployeesService.SaveEmployee();
 
 
 
@@ -194,21 +207,24 @@ namespace Store.Web.Controllers
 
 
 
-            //    var empq = EmployeesService.GetEmployeeByEmail(model.Email);
-            //    var newUser = new Model.Models.Users()
-            //    {
 
-            //        UserName = model.RegisterUserViewModell.UserName,
-            //        PassWord = model.RegisterUserViewModell.Password,
-            //        RegistrationDate = DateTime.Now,
-            //        IsActive = false,
-            //        EmployeeID = EmployeesService.GetEmployeeByEmail(model.Email).ID,
-            //        UserRoleTitle = model.RegisterUserViewModell.UserRoleTitle,
-            //        Employees = empq
-            //    };
-            //    UsersService.CreateUser(newUser);
-            //    UsersService.SaveUser();
-            //    return RedirectToAction(nameof(HomeController.Index), "Home");
+
+
+                //    var empq = EmployeesService.GetEmployeeByEmail(model.Email);
+                //    var newUser = new Model.Models.Users()
+                //    {
+
+                //        UserName = model.RegisterUserViewModell.UserName,
+                //        PassWord = model.RegisterUserViewModell.Password,
+                //        RegistrationDate = DateTime.Now,
+                //        IsActive = false,
+                //        EmployeeID = EmployeesService.GetEmployeeByEmail(model.Email).ID,
+                //        UserRoleTitle = model.RegisterUserViewModell.UserRoleTitle,
+                //        Employees = empq
+                //    };
+                //    UsersService.CreateUser(newUser);
+                //    UsersService.SaveUser();
+                //    return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             return View();
         }

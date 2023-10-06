@@ -12,28 +12,47 @@
         <label>Name</label>
         <br />
         @Html.TextBoxFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
         <label>Address</label>
         <br />
         @Html.TextBoxFor(m => m.Address)
+        @Html.ValidationMessageFor(m => m.Address, null, new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
         <label>PhoneNumber</label>
         <br />
         @Html.TextBoxFor(m => m.PhoneNumber)
+        @Html.ValidationMessageFor(m => m.PhoneNumber, null, new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
         <label>Email</label>
         <br />
         @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "attribute-error" })
+        @Html.ValidationMessage("UniquePublisher", new { @class = "attribute-error" })
+
+
 
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 }
+<style>
+    .error-summary {
+        color: red;
+    }
 
+    .attribute-error {
+        display: block;
+        color: red;
+    }
+</style>

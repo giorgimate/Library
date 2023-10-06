@@ -54,15 +54,29 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterRole(RegisterRoleViewModel model)
         {
-            var role = new Roles()
+            var allroles = RolesService.GetRoles().ToList();
+            foreach (var rol in allroles)
             {
-                RoleName = model.RoleName
-                //CreateDate = DateTime.Now,
+                if (model.RoleName == rol.RoleName)
+                {
+                    ModelState.AddModelError("UniqueRole", "ასეთი პოზიცია უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
+            {
 
-            };
-            RolesService.CreateRole(role);
-            RolesService.SaveRole();
-            return RedirectToAction("Index");
+
+                var role = new Roles()
+                {
+                    RoleName = model.RoleName
+                    //CreateDate = DateTime.Now,
+
+                };
+                RolesService.CreateRole(role);
+                RolesService.SaveRole();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -83,13 +97,28 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterRoleViewModel model)
         {
-            var role = RolesService.GetRole(model.ID);
-            if (role != null)
+
+            var allroles = RolesService.GetRoles().ToList();
+            foreach (var rol in allroles)
             {
-                role.RoleName = model.RoleName;
-                RolesService.SaveRole();
+                if (model.RoleName == rol.RoleName)
+                {
+                    ModelState.AddModelError("UniqueRole", "ასეთი პოზიცია უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+
+                var role = RolesService.GetRole(model.ID);
+                if (role != null)
+                {
+                    role.RoleName = model.RoleName;
+                    RolesService.SaveRole();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterRoleViewModel model)

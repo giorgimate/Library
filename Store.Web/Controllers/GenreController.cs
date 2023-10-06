@@ -59,15 +59,29 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterGenre(RegisterGenreViewModel model)
         {
-            var genre = new Genres()
+            var allgenre = GenresService.GetGenres().ToList();
+            foreach (var genr in allgenre)
+            {
+                if (model.Name == genr.Name)
+                {
+                    ModelState.AddModelError("UniqueGenre", "ასეთი ჟანრი უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
             {
 
-                Name = model.Name,
-                CreateDate = DateTime.Now,
-            };
-            GenresService.CreateGenre(genre);
-            GenresService.SaveGenre();
-            return RedirectToAction("Index");
+
+                var genre = new Genres()
+                {
+
+                    Name = model.Name,
+                    CreateDate = DateTime.Now,
+                };
+                GenresService.CreateGenre(genre);
+                GenresService.SaveGenre();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -88,14 +102,28 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterGenreViewModel model)
         {
-            var genre = GenresService.GetGenre(model.ID);
-            if (genre != null)
+            var allgenre = GenresService.GetGenres().ToList();
+            foreach (var genr in allgenre)
             {
-                //employee.ID = model.ID;
-                genre.Name = model.Name;
-                GenresService.SaveGenre();
+                if (model.Name == genr.Name)
+                {
+                    ModelState.AddModelError("UniqueGenre", "ასეთი ჟანრი უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+
+                var genre = GenresService.GetGenre(model.ID);
+                if (genre != null)
+                {
+                    //employee.ID = model.ID;
+                    genre.Name = model.Name;
+                    GenresService.SaveGenre();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterGenreViewModel model)

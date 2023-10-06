@@ -53,16 +53,31 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterPosition(RegisterPositonViewModel model)
         {
-            var position = new Positions()
+
+            var allposition = PositionsService.GetPositions().ToList();
+            foreach (var position in allposition)
+            {
+                if (model.PositionTitle == position.PositionTitle)
+                {
+                    ModelState.AddModelError("UniquePosition", "ასეთი პოზიცია უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
             {
 
-                PositionTitle = model.PositionTitle,
-                CreateDate = DateTime.Now,
 
-            };
-            PositionsService.CreatePosition(position);
-            PositionsService.SavePosition();
-            return RedirectToAction("Index");
+                var position = new Positions()
+                {
+
+                    PositionTitle = model.PositionTitle,
+                    CreateDate = DateTime.Now,
+
+                };
+                PositionsService.CreatePosition(position);
+                PositionsService.SavePosition();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -83,13 +98,27 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterPositonViewModel model)
         {
-            var position = PositionsService.GetPositionByID(model.ID);
-            if (position != null)
+            var allposition = PositionsService.GetPositions().ToList();
+            foreach (var pos in allposition)
             {
-                position.PositionTitle = model.PositionTitle;
-                PositionsService.SavePosition();
+                if (model.PositionTitle == pos.PositionTitle)
+                {
+                    ModelState.AddModelError("UniquePosition", "ასეთი პოზიცია უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+
+                var position = PositionsService.GetPositionByID(model.ID);
+                if (position != null)
+                {
+                    position.PositionTitle = model.PositionTitle;
+                    PositionsService.SavePosition();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterPositonViewModel model)

@@ -54,16 +54,30 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterLanguage(RegisterLanguageViewModel model)
         {
-            var language = new Languages()
+            var alllanguages = languagesService.GetLanguages().ToList();
+            foreach (var lang in alllanguages)
+            {
+                if (model.Language == lang.Language)
+                {
+                    ModelState.AddModelError("UniqueLanguage", "ასეთი ენა უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
             {
 
-                Language = model.Language,
-                CreateDate = DateTime.Now,
 
-            };
-            languagesService.CreateLanguage(language);
-            languagesService.SaveLanguage();
-            return RedirectToAction("Index");
+                var language = new Languages()
+                {
+
+                    Language = model.Language,
+                    CreateDate = DateTime.Now,
+
+                };
+                languagesService.CreateLanguage(language);
+                languagesService.SaveLanguage();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -84,14 +98,29 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterLanguageViewModel model)
         {
-            var language = languagesService.GetLanguage(model.ID);
-            if (language != null)
+
+            var alllanguages = languagesService.GetLanguages().ToList();
+            foreach (var lang in alllanguages)
             {
-                //employee.ID = model.ID;
-                language.Language = model.Language;
-                languagesService.SaveLanguage();
+                if (model.Language == lang.Language)
+                {
+                    ModelState.AddModelError("UniqueLanguage", "ასეთი ენა უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+
+                var language = languagesService.GetLanguage(model.ID);
+                if (language != null)
+                {
+                    //employee.ID = model.ID;
+                    language.Language = model.Language;
+                    languagesService.SaveLanguage();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterLanguageViewModel model)

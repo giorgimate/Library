@@ -62,17 +62,32 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterAuthor(RegisterAuthorViewModel model)
         {
-            var author = new Authors()
+            var allauthor = AuthorsService.GetAuthors().ToList();
+            foreach (var author in allauthor)
             {
+                if(model.FirstName == author.FirstName && model.LastName == author.LastName)
+                {
+                    ModelState.AddModelError("UniqueAuthor", "ასეთი ავტორი უკვე არსებობს");
+                }
+            }
 
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                CreateDate = DateTime.Now,
+            if (ModelState.IsValid)
+            {
+                        var author = new Authors()
+                        {
 
-            };
-            AuthorsService.CreateAuthor(author);
-            AuthorsService.SaveAuthor();
-            return RedirectToAction("Index");
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            CreateDate = DateTime.Now,
+
+                        };
+                        AuthorsService.CreateAuthor(author);
+                        AuthorsService.SaveAuthor();
+                return RedirectToAction("Index");
+            }
+            return View();
+
+
         }
 
         [HttpGet]
@@ -94,15 +109,28 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterAuthorViewModel model)
         {
-            var employee = AuthorsService.GetAuthor(model.ID);
-            if (employee != null)
+            var allauthor = AuthorsService.GetAuthors().ToList();
+            foreach (var author in allauthor)
             {
-                //employee.ID = model.ID;
-                employee.FirstName = model.FirstName;
-                employee.LastName = model.LastName;
-                AuthorsService.SaveAuthor();
+                if (model.FirstName == author.FirstName && model.LastName == author.LastName)
+                {
+                    ModelState.AddModelError("UniqueAuthor", "ასეთი ავტორი უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            var employee = AuthorsService.GetAuthor(model.ID);
+            if (ModelState.IsValid)
+            {
+
+                if (employee != null)
+                {
+                    employee.ID = model.ID;
+                    employee.FirstName = model.FirstName;
+                    employee.LastName = model.LastName;
+                    AuthorsService.SaveAuthor();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterAuthorViewModel model)

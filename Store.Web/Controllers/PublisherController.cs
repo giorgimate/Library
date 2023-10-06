@@ -53,19 +53,33 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterPublisher(RegisterPublisherViewModel model)
         {
-            var publisher = new Publishers()
+            var allpublisher = PublishersService.GetPublishers().ToList();
+            foreach (var publisher in allpublisher)
+            {
+                if (model.Name == publisher.Name && model.Address == publisher.Address && model.PhoneNumber == publisher.PhoneNumber && model.Email == publisher.Email)
+                {
+                    ModelState.AddModelError("UniquePublisher", "ასეთი გამომცემლობა უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
             {
 
-                Name = model.Name,
-                Address = model.Address,
-                PhoneNumber = model.PhoneNumber,
-                Email = model.Email,
-                CreateDate = DateTime.Now,
 
-            };
-            PublishersService.CreatePublisher(publisher);
-            PublishersService.SavePublisher();
-            return RedirectToAction("Index");
+                var publisher = new Publishers()
+                {
+
+                    Name = model.Name,
+                    Address = model.Address,
+                    PhoneNumber = model.PhoneNumber,
+                    Email = model.Email,
+                    CreateDate = DateTime.Now,
+
+                };
+                PublishersService.CreatePublisher(publisher);
+                PublishersService.SavePublisher();
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         [HttpGet]
@@ -90,16 +104,30 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterPublisherViewModel model)
         {
-            var Publisher = PublishersService.GetPublisher(model.ID);
-            if (Publisher != null)
+             var allpublisher = PublishersService.GetPublishers().ToList();
+            foreach (var publisher in allpublisher)
             {
-                Publisher.Name = model.Name;
-                Publisher.Address = model.Address;
-                Publisher.PhoneNumber = model.PhoneNumber;
-                Publisher.Email = model.Email;
-                PublishersService.SavePublisher();
+                if (model.Name == publisher.Name && model.Address == publisher.Address && model.PhoneNumber == publisher.PhoneNumber && model.Email == publisher.Email)
+                {
+                    ModelState.AddModelError("UniquePublisher", "ასეთი გამომცემლობა უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            var Publisher = PublishersService.GetPublisher(model.ID);
+            if (ModelState.IsValid)
+            {
+
+
+                if (Publisher != null)
+                {
+                    Publisher.Name = model.Name;
+                    Publisher.Address = model.Address;
+                    Publisher.PhoneNumber = model.PhoneNumber;
+                    Publisher.Email = model.Email;
+                    PublishersService.SavePublisher();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterPublisherViewModel model)

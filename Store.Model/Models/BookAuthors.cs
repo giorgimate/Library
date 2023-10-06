@@ -9,6 +9,7 @@ namespace Store.Model.Models
     public class BookAuthors
     {
         public int ID { get; set; }
+        
         public int BookID { get; set; }
         public int AuthorID { get; set; }
         public DateTime? CreateDate { get; set; }

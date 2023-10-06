@@ -12,6 +12,9 @@
         <label>Language</label>
         <br />
         @Html.TextBoxFor(m => m.Language)
+        @Html.ValidationMessageFor(m => m.Language, null, new { @class = "attribute-error" })
+        @Html.ValidationMessage("UniqueLanguage", new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
@@ -20,4 +23,13 @@
 }
 
 
+<style>
+    .error-summary {
+        color: red;
+    }
 
+    .attribute-error {
+        display: block;
+        color: red;
+    }
+</style>

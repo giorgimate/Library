@@ -19,6 +19,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Users = Store.Model.Models.Users;
 using Roles = Store.Model.Models.Roles;
+using Store.Data.Infrastructure;
 
 namespace Store.Web.Controllers
 {

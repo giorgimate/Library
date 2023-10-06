@@ -15,6 +15,8 @@
         <br />
 
         @Html.TextBoxFor(model => model.PositionTitle, new { value = Model.PositionTitle })
+        @Html.ValidationMessageFor(m => m.PositionTitle, null, new { @class = "attribute-error" })
+        @Html.ValidationMessage("UniquePosition", new { @class = "attribute-error" })
 
     </div>
 
@@ -25,6 +27,15 @@
         Delete
     </button>
 }
+<style>
+    .error-summary {
+        color: red;
+    }
 
+    .attribute-error {
+        display: block;
+        color: red;
+    }
+</style>
 
 

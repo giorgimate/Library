@@ -15,6 +15,8 @@
         <br />
 
         @Html.TextBoxFor(model => model.Name, new { value = Model.Name })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
@@ -22,6 +24,8 @@
         <br />
 
         @Html.TextBoxFor(model => model.Address, new { value = Model.Address })
+        @Html.ValidationMessageFor(m => m.Address, null, new { @class = "attribute-error" })
+
 
     </div>
     <div class="form-group">
@@ -29,6 +33,7 @@
         <br />
 
         @Html.TextBoxFor(model => model.PhoneNumber, new { value = Model.PhoneNumber })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, null, new { @class = "attribute-error" })
 
     </div>
     <div class="form-group">
@@ -36,6 +41,9 @@
         <br />
 
         @Html.TextBoxFor(model => model.Email, new { value = Model.Email })
+        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "attribute-error" })
+        @Html.ValidationMessage("UniquePublisher", new { @class = "attribute-error" })
+
 
     </div>
 
@@ -46,6 +54,17 @@
         Delete
     </button>
 }
+<style>
+    .error-summary {
+        color: red;
+    }
+
+    .attribute-error {
+        display: block;
+        color: red;
+    }
+</style>
+
 
 
 

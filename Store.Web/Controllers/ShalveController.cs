@@ -54,19 +54,33 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult RegisterShalve(RegisterShalveViewModel model)
         {
-            var shalve = new Shalves()
+            var allshalves = ShalvesService.GetShalves().ToList();
+            foreach (var shal in allshalves)
             {
-                Floor = model.Floor,
-                Room = model.Room,
-                Shelf = model.Shelf,
-                Section = model.Section,
-                Row = model.Row,
-                CreateDate = DateTime.Now
+                if (model.Floor == shal.Floor && model.Room == shal.Room && model.Shelf == shal.Shelf && model.Section == shal.Section && model.Row == shal.Row )
+                {
+                    ModelState.AddModelError("UniqueShalve", "ასეთი პოზიცია უკვე არსებობს");
+                }
+            }
+            if (ModelState.IsValid)
+            {
 
-            };
-            ShalvesService.CreateShalve(shalve);
-            ShalvesService.SaveShalve();
-            return RedirectToAction("Index");
+
+                var shalve = new Shalves()
+                {
+                    Floor = model.Floor,
+                    Room = model.Room,
+                    Shelf = model.Shelf,
+                    Section = model.Section,
+                    Row = model.Row,
+                    CreateDate = DateTime.Now
+
+                };
+                ShalvesService.CreateShalve(shalve);
+                ShalvesService.SaveShalve();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         [HttpGet]
@@ -92,17 +106,31 @@ namespace Store.Web.Controllers
         [HttpPost]
         public ActionResult Submit(RegisterShalveViewModel model)
         {
-            var shalve = ShalvesService.GetShalve(model.ID);
-            if (shalve != null)
+            var allshalves = ShalvesService.GetShalves().ToList();
+            foreach (var shal in allshalves)
             {
-                shalve.Floor = model.Floor;
-                shalve.Room = model.Room;
-                shalve.Shelf = model.Shelf;
-                shalve.Section = model.Section;
-                shalve.Row = model.Row;
-                ShalvesService.SaveShalve();
+                if (model.Floor == shal.Floor && model.Room == shal.Room && model.Shelf == shal.Shelf && model.Section == shal.Section && model.Row == shal.Row)
+                {
+                    ModelState.AddModelError("UniqueShalve", "ასეთი პოზიცია უკვე არსებობს");
+                }
             }
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+
+                var shalve = ShalvesService.GetShalve(model.ID);
+                if (shalve != null)
+                {
+                    shalve.Floor = model.Floor;
+                    shalve.Room = model.Room;
+                    shalve.Shelf = model.Shelf;
+                    shalve.Section = model.Section;
+                    shalve.Row = model.Row;
+                    ShalvesService.SaveShalve();
+                }
+                return RedirectToAction("Index");
+            }
+            return View("View", model);
         }
         [HttpPost]
         public ActionResult Delete(RegisterShalveViewModel model)
@@ -124,18 +152,12 @@ namespace Store.Web.Controllers
             var shalves = ShalvesService.GetShalves().ToList();
             foreach (var item in shalves)
             {
-                //if ((item?.RoleName ?? null) != null && item.RoleName.StartsWith(searching))
-                //{
-                //    shalvesList.Add(item);
-                //}
                 if ((item?.Floor ?? null) != null && Convert.ToString(item.Floor).StartsWith(searching) || (item?.Room ?? null) != null && Convert.ToString(item.Room).StartsWith(searching) || (item?.Shelf ?? null) != null && item.Shelf.StartsWith(searching) || (item?.Section ?? null) != null && item.Section.StartsWith(searching) || (item?.Row ?? null) != null && item.Row.StartsWith(searching) )
                 {
                     shalvesList.Add(item);
                 }
 
             }
-
-
             return View(shalvesList);
 
         }

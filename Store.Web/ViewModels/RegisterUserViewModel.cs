@@ -32,7 +32,7 @@ namespace Store.Web.ViewModels
 
 
         [Compare("Password", ErrorMessage = "პაროლი და გაიმეორეთ პაროლი არ ემთხვევა ერთმანეთს")]
-        [Required(ErrorMessage = "გთხოვთ შეავსოთ გაიმეორეთ პაროლის ველი ველი")]
+        [Required(ErrorMessage = "გთხოვთ შეავსოთ გაიმეორეთ პაროლის  ველი")]
         [DataType(DataType.Password)]
 
        
